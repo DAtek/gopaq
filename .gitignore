@@ -1,0 +1,4 @@
+.lh/
+.vscode/
+.coverage
+.env

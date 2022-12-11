@@ -1,0 +1,35 @@
+name: CI Pipeline
+
+on:
+  push:
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '>=1.19.0'
+      - uses: extractions/setup-just@v1
+
+      - name: Test
+        env:
+          POSTGRES_PASSWORD: password
+          POSTGRES_USER: user
+          POSTGRES_DB: test
+          POSTGRES_PORT: 5432
+        shell: bash
+        run: |
+          docker-compose up -d
+          status=0
+          just test-cover || status=$?
+          docker-compose down
+          exit $status
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          fail_ci_if_error: true
+          files: .coverage
+          token: ${{ secrets.CODECOV_TOKEN }}
