@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/DAtek/gopaq/branch/main/graph/badge.svg?token=WWY2L6G56Y)](https://codecov.io/gh/DAtek/gopaq)
+[![codecov](https://codecov.io/gh/DAtek/gopaq/graph/badge.svg?token=WWY2L6G56Y)](https://codecov.io/gh/DAtek/gopaq)
 
 # GOPAQ - Gorm Paginated Query
 
